@@ -1,0 +1,340 @@
+
+.plans-page {
+  min-height: 100vh;
+  background: #f9fafc;
+  font-family: 'Helvetica', sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+/* === HEADER === */
+.plans-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 4rem;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+}
+
+.plans-header .logo {
+  height: 35px;
+}
+
+.plans-header .phone {
+  text-align: right;
+  font-size: 0.9rem;
+  color: #676f8f;
+}
+
+.plans-header .phone strong {
+  display: block;
+  color: #141938;
+  font-size: 1rem;
+}
+
+/* === MAIN === */
+.plans-main {
+  padding: 3rem 4rem;
+}
+
+.plans-main .title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #141938;
+  margin-bottom: 0.5rem;
+}
+
+.plans-main .subtitle {
+  color: #676f8f;
+  margin-bottom: 2rem;
+}
+
+/* === OPCIONES (Para mí / Para alguien más) === */
+.plans-filters {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.option-card {
+  width: 260px;
+  padding: 2rem;
+  background: #fff;
+  border: 2px solid #e0e5f2;
+  border-radius: 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.option-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+.option-card.active {
+  border-color: #e30613;
+  background: #fff5f5;
+}
+
+.option-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 1rem;
+}
+
+.option-card h3 {
+  font-size: 1.2rem;
+  color: #141938;
+  margin-bottom: 0.5rem;
+}
+
+.option-card p {
+  font-size: 0.9rem;
+  color: #676f8f;
+}
+
+/* === TARJETAS DE PLANES === */
+.plans-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* 👈 más delgadas */
+  gap: 2rem;
+}
+
+.plan-card {
+  background: #fff;
+  border: 1px solid #e0e5f2;
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: left;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease;
+  position: relative;
+  
+  min-height: 620px;     /* 👈 más largas */
+  max-width: 220px;      /* 👈 controla lo delgado */
+  margin: 0 auto;        /* centra cada tarjeta */
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* botón al fondo */
+}
+
+.plan-card:hover {
+  transform: translateY(-5px);
+}
+
+.plan-card .tag {
+  position: absolute;
+  top: -12px;
+  left: 20px;
+  background: #00c853;
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 12px;
+  font-weight: bold;
+}
+
+.plan-card h2 {
+  color: #141938;
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-top: 3rem;
+  display: flex;
+  align-items: center;
+}
+
+
+.plan-card .price {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #141938;
+  margin: 1rem 0;
+}
+
+.plan-card .price span {
+  color: #e30613;
+}
+
+.plan-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+}
+
+.plan-card ul li {
+  font-size: 0.95rem;
+  color: #676f8f;
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.plan-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+}
+
+.plan-card ul li {
+  font-size: 0.95rem;
+  color: #676f8f;
+  margin-bottom: 2.5rem;   /* 👈 más separación */
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  position: relative;
+  padding-left: 1rem; /* espacio para el puntito */
+  line-height: 1.4;   /* mejor legibilidad */
+}
+
+.plan-card ul li::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  background: #141938; /* color del punto */
+  border-radius: 50%;
+  position: absolute;
+  left: 0;
+  top: 0.6rem;
+}
+
+
+/* Botón */
+.plan-card .btn {
+  background: #e30613;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background 0.3s ease;
+  width: 100%;
+  text-align: center;
+}
+
+.plan-card .btn:hover {
+  background: #b80510;
+}
+
+.plan-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* separa título izq, icono der */
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.plan-card-header h2 {
+  font-size: 1.3rem;
+  color: #141938;
+  font-weight: bold;
+  margin-bottom: -60px;
+}
+
+.plan-card-header img {
+  width: 32px;
+  height: 32px;
+}
+
+.cost-label{
+    color: gray;
+}
+
+/* === BARRA DE PASOS === */
+.plans-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  background: #fff;
+  padding: 1.2rem 2rem;
+  border-bottom: 1px solid #eee;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  color: #9aa0b5;
+}
+
+.step .circle {
+  display: flex;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #e0e5f2;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.step .label {
+  font-size: 0.95rem;
+}
+
+.step.active .circle {
+  background: #e30613;
+}
+
+.step.active .label {
+  color: #e30613;
+  font-weight: bold;
+}
+
+.step.done .circle {
+  background: #00c853;
+}
+
+.step.done .label {
+  color: #141938;
+}
+
+.step-line {
+  flex: 1;
+  height: 2px;
+  background: #e0e5f2;
+}
+
+.step-line.active {
+  background: #e30613;
+}
+
+/* === RESUMEN === */
+.summary {
+  flex: 1; /* ocupa el espacio disponible */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* 👈 centra verticalmente */
+  padding: 2rem;
+  background: #f9fafc; /* fondo gris clarito */
+}
+
+.summary-card {
+  background: #fff; /* cuadro blanco */
+  border: 1px solid #e0e5f2;
+  border-radius: 20px;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 500px; /* 👈 controla el ancho */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  text-align: left;
+}
+
+.summary-card-header{
+    display: flex;
+    gap: 2rem;
+}
