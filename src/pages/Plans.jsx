@@ -1,18 +1,34 @@
-import { useState } from "react";
+import { usePlan } from "../context/PlanContext";
+import left from "../assets/arrow-left.svg";
+import parami from "../assets/parami.svg";
+import alguienmas from "../assets/alguienmas.svg";
+import iconocasa from "../assets/iconocasa.svg";
+import iconohospital from "../assets/iconohospital.svg";
+import logo from "../assets/logo.svg";
+import iconosombra from "../assets/iconosombra.svg";
 
 export default function Plans() {
-  const [selectedOption, setSelectedOption] = useState(null);
-  const [selectedPlan, setSelectedPlan] = useState(null);
+  const { 
+    userData, 
+    selectedOption, 
+    setSelectedOption, 
+    selectedPlan, 
+    setSelectedPlan 
+  } = usePlan();
 
+  // 👇 Extrae el primer nombre
+  const primerNombre = userData?.nombre ? userData.nombre.split(" ")[0] : "";
+
+  // 👇 Lista de planes con íconos importados
   const plans = [
     {
       id: 1,
       title: "Plan en Casa",
       price: "S/ 39",
-      icon: "/iconocasa.svg",
+      icon: iconocasa,
       benefits: [
         "Médico general a domicilio por S/ 20 y medicinas cubiertas al 100%",
-        "Videoconsulta y orientación telefónica al 100% en medicina general + pediatría",
+        "Videoconsulta y orientación telefónica al 100%",
         "Indemnización de S/ 300 en caso de hospitalización por más de un día"
       ]
     },
@@ -20,7 +36,7 @@ export default function Plans() {
       id: 2,
       title: "Plan en Casa y Clínica",
       price: "S/ 99",
-      icon: "/iconohospital.svg",
+      icon: iconohospital,
       benefits: [
         "Consultas en clínica para cualquier especialidad",
         "Medicinas y exámenes derivados cubiertos al 80%",
@@ -31,10 +47,10 @@ export default function Plans() {
       id: 3,
       title: "Plan en Casa + Chequeo",
       price: "S/ 49",
-      icon: "/iconocasa.svg",
+      icon: iconocasa,
       benefits: [
-        "Un Chequeo preventivo general de manera presencial o virtual",
-        "Acceso a vacunas en el programa del MINSA en centros privados",
+        "Chequeo preventivo general presencial o virtual",
+        "Acceso a vacunas del MINSA en centros privados",
         "Incluye todos los beneficios del Plan en Casa"
       ]
     }
@@ -42,16 +58,16 @@ export default function Plans() {
 
   return (
     <div className="plans-page">
-      {/* Header */}
+      {/* HEADER */}
       <header className="plans-header">
-        <img src="/logo.svg" alt="Rimac logo" className="logo" />
+        <img src={logo} alt="Rimac logo" className="logo" />
         <div className="phone">
           <span>¡Compra por este medio!</span>
           <strong>(01) 411 6001</strong>
         </div>
       </header>
-
-      {/* Stepper */}
+      
+      {/* PASOS */}
       <div className="plans-steps">
         <div className={`step ${!selectedPlan ? "active" : "done"}`}>
           <span className="circle">1</span>
@@ -66,20 +82,21 @@ export default function Plans() {
         </div>
       </div>
 
-      {/* Main */}
+      {/* MAIN */}
       <main className="plans-main">
         {!selectedPlan ? (
           <>
-            <h1 className="title">Elige el plan que se adapte a ti</h1>
-            <p className="subtitle">Selecciona a quién deseas asegurar.</p>
+            {/* 👇 Saludo personalizado */}
+            <h1 className="title">¡Hola {primerNombre || "!"}!</h1>
+            <p className="subtitle">¿Para quién deseas cotizar?</p>
 
-            {/* Filtros */}
+            {/* OPCIONES */}
             <div className="plans-filters">
               <div
                 className={`option-card ${selectedOption === "me" ? "active" : ""}`}
                 onClick={() => setSelectedOption("me")}
               >
-                <img src="/parami.svg" alt="Para mí" className="option-icon" />
+                <img src={parami} alt="Para mí" className="option-icon" />
                 <h3>Para mí</h3>
                 <p>Cotiza tu seguro de salud y agrega familiares si así lo deseas.</p>
               </div>
@@ -88,35 +105,32 @@ export default function Plans() {
                 className={`option-card ${selectedOption === "family" ? "active" : ""}`}
                 onClick={() => setSelectedOption("family")}
               >
-                <img src="/alguienmas.svg" alt="Para alguien más" className="option-icon" />
+                <img src={alguienmas} alt="Para alguien más" className="option-icon" />
                 <h3>Para alguien más</h3>
                 <p>Realiza una cotización para uno de tus familiares o cualquier persona.</p>
               </div>
             </div>
 
-            {/* Cards solo si ya eligió */}
+            {/* LISTA DE PLANES */}
             {selectedOption && (
               <div className="plans-list">
                 {plans.map((plan) => (
                   <div className="plan-card" key={plan.id}>
-                    {/* Header con ícono y título */}
-                   <div className="plan-card-header">
-                    <h2>{plan.title}</h2>
-                     <img src={plan.icon} alt={plan.title} />
-                     </div>
+                    <div className="plan-card-header">
+                      <h2>{plan.title}</h2>
+                      <img src={plan.icon} alt={plan.title} />
+                    </div>
 
                     <p className="cost-label">Costo del plan</p>
                     <div className="price">{plan.price} al mes</div>
+
                     <ul>
-                      {plan.benefits.map((benefit, idx) => (
-                        <li key={idx}>{benefit}</li>
+                      {plan.benefits.map((b, i) => (
+                        <li key={i}>{b}</li>
                       ))}
                     </ul>
 
-                    <button
-                      className="btn"
-                      onClick={() => setSelectedPlan(plan)} // 👈 ahora guarda el plan
-                    >
+                    <button className="btn" onClick={() => setSelectedPlan(plan)}>
                       Seleccionar Plan
                     </button>
                   </div>
@@ -125,29 +139,36 @@ export default function Plans() {
             )}
           </>
         ) : (
-<div className="summary"><
-    h1 className="summary-title">Resumen del seguro</h1>
-  <div className="summary-card">
-    <p className="summary-subtitle">PRECIO CALCULADO PARA:</p>
+          /* === RESUMEN FINAL === */
+          <div className="summary">
+            <button className="back-btn" onClick={() => setSelectedPlan(null)}>
+              <img src={left} alt="Volver" className="back-icon" />
+              Volver
+            </button>
 
-    <div className="summary-card-header">
-      <img src="/iconosombra.svg" alt={selectedPlan.title} className="summary-icon" />
-       <h2>Rocio Miranda Diaz</h2>
-    </div>
+               <h1 className="summary-title">Resumen del seguro</h1>
 
-    <div className="summary-price">{selectedPlan.price} al mes</div>
+            <div className="summary-card">
+              <p className="summary-label">PRECIOS CALCULADOS PARA:</p>
 
-    <ul className="summary-benefits">
-      {selectedPlan.benefits.map((benefit, idx) => (
-        <li key={idx}>{benefit}</li>
-      ))}
-    </ul>
+              <div className="summary-user">
+                <img src={iconosombra} alt="user" className="user-icon" />
+                <h2>{userData?.nombre}</h2>
+              </div>
 
-    <button className="confirm-btn">Confirmar</button>
-  </div>
-</div>
+              <hr />
 
+              <div className="summary-info">
+                <h3>Responsable de pago</h3>
+                <p>DNI: {userData?.documento}</p>
+                <p>Celular: {userData?.phone}</p>
 
+                <h3>Plan elegido</h3>
+                <p>{selectedPlan.title}</p>
+                <p>Costo del Plan: {selectedPlan.price} al mes</p>
+              </div>
+            </div>
+          </div>
         )}
       </main>
     </div>

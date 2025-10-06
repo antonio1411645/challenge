@@ -1,4 +1,4 @@
-
+/* === PÁGINA PRINCIPAL === */
 .plans-page {
   min-height: 100vh;
   background: #f9fafc;
@@ -33,11 +33,81 @@
   font-size: 1rem;
 }
 
-/* === MAIN === */
+/* === BARRA DE PASOS === */
+.plans-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  background: #f1f3fd;
+  padding: 1.2rem 2rem;
+  border-bottom: 1px solid #e0e5f2;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 500;
+  color: #a0a5c4;
+  font-size: 0.95rem;
+}
+
+.step .circle {
+  display: flex;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #a0a5c4;
+  background: #f1f3fd;
+  color: #4a63e7;
+  font-weight: bold;
+  font-size: 0.85rem;
+}
+
+/* Paso activo */
+.step.active .circle {
+  background: #4a63e7;
+  border-color: #4a63e7;
+  color: #fff;
+}
+
+.step.active .label {
+  color: #141938;
+  font-weight: 700;
+}
+
+/* Paso completado */
+.step.done .circle {
+  background: #4a63e7;
+  color: #fff;
+  border-color: #4a63e7;
+}
+
+.step.done .label {
+  color: #141938;
+}
+
+/* Línea entre pasos */
+.step-line {
+  width: 40px;
+  height: 2px;
+  background: #d0d4ea;
+  border-radius: 2px;
+}
+
+.step-line.active {
+  background: #4a63e7;
+}
+
+/* === SECCIÓN PRINCIPAL === */
 .plans-main {
   padding: 3rem 4rem;
 }
 
+/* === TÍTULOS === */
 .plans-main .title {
   font-size: 2rem;
   font-weight: bold;
@@ -67,12 +137,12 @@
   text-align: center;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .option-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
 }
 
 .option-card.active {
@@ -100,7 +170,7 @@
 /* === TARJETAS DE PLANES === */
 .plans-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* 👈 más delgadas */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 2rem;
 }
 
@@ -110,44 +180,39 @@
   border-radius: 20px;
   padding: 2rem;
   text-align: left;
-  box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s ease;
   position: relative;
-  
-  min-height: 620px;     /* 👈 más largas */
-  max-width: 220px;      /* 👈 controla lo delgado */
-  margin: 0 auto;        /* centra cada tarjeta */
-  
+  min-height: 620px;
+  max-width: 220px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* botón al fondo */
+  justify-content: space-between;
 }
 
 .plan-card:hover {
   transform: translateY(-5px);
 }
 
-.plan-card .tag {
-  position: absolute;
-  top: -12px;
-  left: 20px;
-  background: #00c853;
-  color: #fff;
-  font-size: 0.75rem;
-  padding: 0.3rem 0.8rem;
-  border-radius: 12px;
-  font-weight: bold;
+.plan-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.plan-card-header img {
+  width: 32px;
+  height: 32px;
 }
 
 .plan-card h2 {
-  color: #141938;
   font-size: 1.3rem;
+  color: #141938;
   font-weight: bold;
-  margin-top: 3rem;
-  display: flex;
-  align-items: center;
 }
-
 
 .plan-card .price {
   font-size: 1.4rem;
@@ -156,10 +221,6 @@
   margin: 1rem 0;
 }
 
-.plan-card .price span {
-  color: #e30613;
-}
-
 .plan-card ul {
   list-style: none;
   padding: 0;
@@ -169,43 +230,23 @@
 .plan-card ul li {
   font-size: 0.95rem;
   color: #676f8f;
-  margin-bottom: 0.8rem;
-  display: flex;
-  align-items: flex-start;
-  gap: 0.5rem;
-}
-
-.plan-card ul {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 1.5rem 0;
-}
-
-.plan-card ul li {
-  font-size: 0.95rem;
-  color: #676f8f;
-  margin-bottom: 2.5rem;   /* 👈 más separación */
-  display: flex;
-  align-items: flex-start;
-  gap: 0.5rem;
+  margin-bottom: 1rem;
   position: relative;
-  padding-left: 1rem; /* espacio para el puntito */
-  line-height: 1.4;   /* mejor legibilidad */
+  padding-left: 1rem;
 }
 
 .plan-card ul li::before {
   content: "";
   width: 6px;
   height: 6px;
-  background: #141938; /* color del punto */
+  background: #141938;
   border-radius: 50%;
   position: absolute;
   left: 0;
   top: 0.6rem;
 }
 
-
-/* Botón */
+/* Botón dentro de plan */
 .plan-card .btn {
   background: #e30613;
   color: white;
@@ -224,117 +265,105 @@
   background: #b80510;
 }
 
-.plan-card-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between; /* separa título izq, icono der */
-  margin-bottom: 1rem;
-  gap: 1rem;
-}
-
-.plan-card-header h2 {
-  font-size: 1.3rem;
-  color: #141938;
-  font-weight: bold;
-  margin-bottom: -60px;
-}
-
-.plan-card-header img {
-  width: 32px;
-  height: 32px;
-}
-
-.cost-label{
-    color: gray;
-}
-
-/* === BARRA DE PASOS === */
-.plans-steps {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-  background: #fff;
-  padding: 1.2rem 2rem;
-  border-bottom: 1px solid #eee;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-}
-
-.step {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-weight: 500;
-  color: #9aa0b5;
-}
-
-.step .circle {
-  display: flex;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: #e0e5f2;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-weight: bold;
-  font-size: 0.9rem;
-}
-
-.step .label {
-  font-size: 0.95rem;
-}
-
-.step.active .circle {
-  background: #e30613;
-}
-
-.step.active .label {
-  color: #e30613;
-  font-weight: bold;
-}
-
-.step.done .circle {
-  background: #00c853;
-}
-
-.step.done .label {
-  color: #141938;
-}
-
-.step-line {
-  flex: 1;
-  height: 2px;
-  background: #e0e5f2;
-}
-
-.step-line.active {
-  background: #e30613;
-}
-
-/* === RESUMEN === */
+/* === RESUMEN FINAL === */
 .summary {
-  flex: 1; /* ocupa el espacio disponible */
+  padding: 3rem;
+  background: #f9faff;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; /* 👈 centra verticalmente */
-  padding: 2rem;
-  background: #f9fafc; /* fondo gris clarito */
 }
 
-.summary-card {
-  background: #fff; /* cuadro blanco */
-  border: 1px solid #e0e5f2;
-  border-radius: 20px;
-  padding: 2.5rem;
-  width: 100%;
-  max-width: 500px; /* 👈 controla el ancho */
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+/* Botón Volver */
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;
+  border: none;
+  color: #4a63e7;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 1.5rem;
+  align-self: flex-start;
+  margin-left: 4rem;
+  transition: color 0.3s ease;
+}
+
+.back-btn:hover {
+  color: #2b2be8;
+}
+
+.back-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Título del resumen */
+.summary-title {
   text-align: left;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #141938;
+  margin: 1rem 4rem 2rem;
+  align-self: flex-start;
 }
 
-.summary-card-header{
-    display: flex;
-    gap: 2rem;
+/* Tarjeta blanca del resumen */
+.summary-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 2.5rem 3rem;
+  width: 90%;
+  max-width: 900px;
+  margin: 0 auto;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  text-align: left;
+  color: #141938;
+}
+
+/* Etiqueta superior */
+.summary-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #6b7280;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+/* Usuario */
+.summary-user {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 1.5rem;
+}
+
+.user-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.summary-user h2 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #141938;
+}
+
+/* Info del resumen */
+.summary-info h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #141938;
+  margin-top: 1.5rem;
+  margin-bottom: 0.3rem;
+}
+
+.summary-info p {
+  color: #4b5563;
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
 }

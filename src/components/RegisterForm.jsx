@@ -2,6 +2,7 @@ import { useState } from "react";
 
 export default function RegisterForm({ onContinue }) {
   const [formData, setFormData] = useState({
+    nombre: "", 
     tipoDocumento: "DNI",
     documento: "",
     phone: "",
@@ -11,36 +12,49 @@ export default function RegisterForm({ onContinue }) {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData({ 
-      ...formData, 
-      [name]: type === "checkbox" ? checked : value 
+    setFormData({
+      ...formData,
+      [name]: type === "checkbox" ? checked : value
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (!formData.privacy) {
-      alert("Acepto la Politica de Privacidad");
+      alert("Debes aceptar la Política de Privacidad.");
       return;
     }
     if (!formData.commercials) {
-      alert("Acepto la Politica Comunicaciones Comerciales");
+      alert("Debes aceptar la Política de Comunicaciones Comerciales.");
       return;
     }
-    onContinue();
+
+    onContinue(formData);
   };
 
   return (
     <form className="register-form" onSubmit={handleSubmit}>
+      
+      <input
+        type="text"
+        name="nombre"
+        placeholder="Nombre completo"
+        value={formData.nombre}
+        onChange={handleChange}
+        required
+      />
+
       <div className="form-row">
-        <select 
-          name="tipoDocumento" 
+        <select
+          name="tipoDocumento"
           value={formData.tipoDocumento}
           onChange={handleChange}
         >
           <option value="DNI">DNI</option>
           <option value="CE">Carné de extranjería</option>
         </select>
+
         <input
           type="text"
           name="documento"
@@ -70,18 +84,22 @@ export default function RegisterForm({ onContinue }) {
         Acepto la Política de Privacidad
       </label>
 
-          <label className="checkbox">
+      <label className="checkbox">
         <input
           type="checkbox"
           name="commercials"
-          checked={formData.privacy}
+          checked={formData.commercials}
           onChange={handleChange}
         />
-        Acepto la Politica Comunicaciones Comerciales
+        Acepto la Política de Comunicaciones Comerciales
       </label>
+
       <p className="terms-note">
-     <a href="/terminos" target="_blank">Aplican Términos y Condiciones</a>
-</p>
+        <a href="/terminos" target="_blank" rel="noopener noreferrer">
+          Aplican Términos y Condiciones
+        </a>
+      </p>
+
       <button type="submit" className="btn">
         Cotiza aquí
       </button>
