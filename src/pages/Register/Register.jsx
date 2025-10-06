@@ -1,20 +1,21 @@
-import { usePlan } from "../context/PlanContext";
-import RegisterForm from "../components/RegisterForm";
-import logo from "../assets/logo.svg";
-import familia from "../assets/familia.svg"
+import { usePlan } from "../../context/PlanContext";
+import RegisterForm from "../../components/RegisterForm/RegisterForm";
+import logo from "../../assets/logo.svg";
+import familia from "../../assets/familia.svg";
+import './Register.scss';
 
 export default function Register({ onContinue }) {
-  const { setUserData, setSelectedOption } = usePlan(); 
+  const { setUserData, setSelectedOption } = usePlan();
 
   const handleContinue = (formData) => {
-    setUserData(formData);          
-    setSelectedOption("me");        
-    onContinue();                   
+    setUserData(formData);
+    setSelectedOption("me");
+    onContinue();
   };
 
   return (
     <div className="register-page">
-      <header className="register-header">
+      <header className="register-page__header">
         <img src={logo} alt="Rimac logo" className="logo" />
         <div className="phone">
           <span>¡Compra por este medio!</span>
@@ -22,7 +23,7 @@ export default function Register({ onContinue }) {
         </div>
       </header>
 
-      <div className="register-body">
+      <div className="register-page__body">
         <div className="register-page__image">
           <img src={familia} alt="Seguro ilustración" />
         </div>

@@ -1,11 +1,12 @@
-import { usePlan } from "../context/PlanContext";
-import left from "../assets/arrow-left.svg";
-import parami from "../assets/parami.svg";
-import alguienmas from "../assets/alguienmas.svg";
-import iconocasa from "../assets/iconocasa.svg";
-import iconohospital from "../assets/iconohospital.svg";
-import logo from "../assets/logo.svg";
-import iconosombra from "../assets/iconosombra.svg";
+import { usePlan } from "../../context/PlanContext";
+import left from "../../assets/arrow-left.svg";
+import parami from "../../assets/parami.svg";
+import alguienmas from "../../assets/alguienmas.svg";
+import iconocasa from "../../assets/iconocasa.svg";
+import iconohospital from "../../assets/iconohospital.svg";
+import logo from "../../assets/logo.svg";
+import iconosombra from "../../assets/iconosombra.svg";
+import "./Plans.scss";
 
 export default function Plans() {
   const { 
@@ -16,10 +17,8 @@ export default function Plans() {
     setSelectedPlan 
   } = usePlan();
 
-  // 👇 Extrae el primer nombre
   const primerNombre = userData?.nombre ? userData.nombre.split(" ")[0] : "";
 
-  // 👇 Lista de planes con íconos importados
   const plans = [
     {
       id: 1,
@@ -58,7 +57,6 @@ export default function Plans() {
 
   return (
     <div className="plans-page">
-      {/* HEADER */}
       <header className="plans-header">
         <img src={logo} alt="Rimac logo" className="logo" />
         <div className="phone">
@@ -67,7 +65,6 @@ export default function Plans() {
         </div>
       </header>
       
-      {/* PASOS */}
       <div className="plans-steps">
         <div className={`step ${!selectedPlan ? "active" : "done"}`}>
           <span className="circle">1</span>
@@ -82,15 +79,12 @@ export default function Plans() {
         </div>
       </div>
 
-      {/* MAIN */}
       <main className="plans-main">
         {!selectedPlan ? (
           <>
-            {/* 👇 Saludo personalizado */}
             <h1 className="title">¡Hola {primerNombre || "!"}!</h1>
             <p className="subtitle">¿Para quién deseas cotizar?</p>
 
-            {/* OPCIONES */}
             <div className="plans-filters">
               <div
                 className={`option-card ${selectedOption === "me" ? "active" : ""}`}
@@ -111,7 +105,6 @@ export default function Plans() {
               </div>
             </div>
 
-            {/* LISTA DE PLANES */}
             {selectedOption && (
               <div className="plans-list">
                 {plans.map((plan) => (
@@ -139,7 +132,6 @@ export default function Plans() {
             )}
           </>
         ) : (
-          /* === RESUMEN FINAL === */
           <div className="summary">
             <button className="back-btn" onClick={() => setSelectedPlan(null)}>
               <img src={left} alt="Volver" className="back-icon" />

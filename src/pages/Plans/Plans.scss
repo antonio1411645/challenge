@@ -1,4 +1,3 @@
-/* === PÁGINA PRINCIPAL === */
 .plans-page {
   min-height: 100vh;
   background: #f9fafc;
@@ -7,7 +6,6 @@
   flex-direction: column;
 }
 
-/* === HEADER === */
 .plans-header {
   display: flex;
   justify-content: space-between;
@@ -33,7 +31,6 @@
   font-size: 1rem;
 }
 
-/* === BARRA DE PASOS === */
 .plans-steps {
   display: flex;
   align-items: center;
@@ -67,7 +64,6 @@
   font-size: 0.85rem;
 }
 
-/* Paso activo */
 .step.active .circle {
   background: #4a63e7;
   border-color: #4a63e7;
@@ -79,7 +75,6 @@
   font-weight: 700;
 }
 
-/* Paso completado */
 .step.done .circle {
   background: #4a63e7;
   color: #fff;
@@ -90,7 +85,6 @@
   color: #141938;
 }
 
-/* Línea entre pasos */
 .step-line {
   width: 40px;
   height: 2px;
@@ -102,12 +96,10 @@
   background: #4a63e7;
 }
 
-/* === SECCIÓN PRINCIPAL === */
 .plans-main {
   padding: 3rem 4rem;
 }
 
-/* === TÍTULOS === */
 .plans-main .title {
   font-size: 2rem;
   font-weight: bold;
@@ -120,7 +112,6 @@
   margin-bottom: 2rem;
 }
 
-/* === OPCIONES (Para mí / Para alguien más) === */
 .plans-filters {
   display: flex;
   justify-content: center;
@@ -167,7 +158,6 @@
   color: #676f8f;
 }
 
-/* === TARJETAS DE PLANES === */
 .plans-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -246,7 +236,6 @@
   top: 0.6rem;
 }
 
-/* Botón dentro de plan */
 .plan-card .btn {
   background: #e30613;
   color: white;
@@ -265,7 +254,6 @@
   background: #b80510;
 }
 
-/* === RESUMEN FINAL === */
 .summary {
   padding: 3rem;
   background: #f9faff;
@@ -274,7 +262,6 @@
   align-items: center;
 }
 
-/* Botón Volver */
 .back-btn {
   display: flex;
   align-items: center;
@@ -300,7 +287,6 @@
   height: 20px;
 }
 
-/* Título del resumen */
 .summary-title {
   text-align: left;
   font-size: 2rem;
@@ -310,7 +296,6 @@
   align-self: flex-start;
 }
 
-/* Tarjeta blanca del resumen */
 .summary-card {
   background: #fff;
   border-radius: 20px;
@@ -323,7 +308,6 @@
   color: #141938;
 }
 
-/* Etiqueta superior */
 .summary-label {
   font-size: 0.85rem;
   font-weight: 700;
@@ -332,7 +316,6 @@
   margin-bottom: 1rem;
 }
 
-/* Usuario */
 .summary-user {
   display: flex;
   align-items: center;
@@ -353,7 +336,6 @@
   color: #141938;
 }
 
-/* Info del resumen */
 .summary-info h3 {
   font-size: 1rem;
   font-weight: 700;

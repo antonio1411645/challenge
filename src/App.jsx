@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Register from "./pages/Register";
-import Plans from "./pages/Plans";
+import Register from "./pages/Register/Register";
+import Plans from "./pages/Plans/Plans";
 
 function App() {
   const [step, setStep] = useState("register");
